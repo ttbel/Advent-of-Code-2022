@@ -1,7 +1,11 @@
 package pl.larks.aoc22.day1;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import pl.larks.aoc22.utils.FileUtils;
 
 class CalorieCountingTest {
 
@@ -29,13 +33,14 @@ class CalorieCountingTest {
 	}
 
 	@Test
-	void findTheMostCaloriesAndReturnSumFrominput1Example() {
+	void findTheMostCaloriesAndReturnSumFromFile() {
 
 		CalorieCounting calorieCounting = new CalorieCounting();
 		final Long sum = calorieCounting.findThreeTheMostCaloriesAndReturnSum(input1Example);
 		Assertions.assertThat(sum).isEqualTo(45000L);
 	}
-@Test
+
+	@Test
 	void findTheMostCaloriesAndReturnSumFromInput1() {
 
 		CalorieCounting calorieCounting = new CalorieCounting();
@@ -43,7 +48,42 @@ class CalorieCountingTest {
 		Assertions.assertThat(sum).isEqualTo(204837L);
 	}
 
-	private String getInput1(){
+	@Test
+	void findTheMostCaloriesAndReturnSumVersion2() {
+
+		CalorieCounting calorieCounting = new CalorieCounting();
+		FileUtils fu = new FileUtils();
+		String file = "inputs/day1/example.txt";
+
+		final List<String> list = fu.loadFileToList(file);
+		System.out.println("file = " + file);
+		System.out.println("list = " + list);
+
+		final Long theMostCaloriesAndReturnSum = calorieCounting.findTheMostCaloriesAndReturnSum(list);
+		System.out.println("theMostCaloriesAndReturnSum = " + theMostCaloriesAndReturnSum);
+
+		Assertions.assertThat(theMostCaloriesAndReturnSum).isEqualTo(24000L);
+	}
+
+	@Test
+	void findTheMostCaloriesAndReturnSumFromInput1Version2() {
+
+		CalorieCounting calorieCounting = new CalorieCounting();
+		FileUtils fu = new FileUtils();
+		String file = "inputs/day1/input.txt";
+
+		final List<String> list = fu.loadFileToList(file);
+		System.out.println("file = " + file);
+		System.out.println("list = " + list);
+
+		final Long sum = calorieCounting.findThreeTheMostCaloriesAndReturnSum(getInput1_v2());
+		System.out.println("sum = " + sum);
+
+		Assertions.assertThat(sum).isEqualTo(204837L);
+	}
+
+	private String getInput1() {
+
 		return "62797\n"
 				+ "\n"
 				+ "1137\n"
@@ -2287,7 +2327,9 @@ class CalorieCountingTest {
 				+ "6400\n"
 				+ "3736";
 	}
-	private String getInput1_v2(){
+
+	private String getInput1_v2() {
+
 		return "62797\n"
 				+ "\n"
 				+ "1137\n"
@@ -4531,5 +4573,4 @@ class CalorieCountingTest {
 				+ "6400\n"
 				+ "3736\n";
 	}
-
 }

@@ -12,35 +12,40 @@ public class CalorieCounting {
 	public Long findTheMostCaloriesAndReturnSum(String input) {
 
 		final String[] foods = input.split("\n");
+		return findTheMostCaloriesAndReturnSum(List.of(foods));
+	}
+
+	public Long findTheMostCaloriesAndReturnSum(List<String> foods) {
+
 		Long max = 0L;
-		Long sum=0L;
+		Long sum = 0L;
 
 		for (String food : foods) {
 			if (StringUtils.isEmpty(food)) {
-				if(max<sum){
-					max=sum;
+				if (max < sum) {
+					max = sum;
 				}
-				sum=0L;
-			}else{
+				sum = 0L;
+			} else {
 				sum += Long.parseLong(food);
 			}
-
 		}
 
 		return max;
 	}
+
 	public Long findThreeTheMostCaloriesAndReturnSum(String input) {
 
 		final String[] foods = input.split("\n");
-		Long max = 0L;
-		Long sum=0L;
+		Long max;
+		Long sum = 0L;
 		List<Long> elfsFoodCalories = new ArrayList<>();
 
 		for (String food : foods) {
 			if (StringUtils.isEmpty(food)) {
 				elfsFoodCalories.add(sum);
-				sum=0L;
-			}else{
+				sum = 0L;
+			} else {
 				sum += Long.parseLong(food);
 			}
 		}
@@ -51,8 +56,6 @@ public class CalorieCounting {
 				.collect(Collectors.toList());
 		max = maxList.stream().reduce(0L, Long::sum);
 		System.out.println("maxList = " + maxList);
-//		final List<Long> collect = elfsFoodCalories.stream().sorted().collect(Collectors.toList());
-//		System.out.println("collect = " + collect);
 		return max;
 	}
 }
