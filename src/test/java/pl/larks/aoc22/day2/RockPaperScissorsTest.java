@@ -39,4 +39,33 @@ class RockPaperScissorsTest {
 
 		Assertions.assertThat(outcomesSum).isEqualTo(12645L);
 	}
+
+	@Test
+	void Part2ComputeRoundsOutcomesSumWhenExampleFile() {
+
+		RockPaperScissors rps = new RockPaperScissors();
+		final String fileName = "inputs/day2/d2_1_example.txt";
+		fu.printInputStream(fileName);
+
+		final List<String> list = fu.loadFileToList(fileName);
+
+		final Long outcomesSum = rps.computeAnotherRoundsOutcomesSum(list);
+		System.out.println("outcomesSum = " + outcomesSum);
+
+		Assertions.assertThat(outcomesSum).isEqualTo(12);
+	}
+
+	@Test
+	void Part2ComputeRoundsOutcomesSumWhenInputFile() {
+
+		RockPaperScissors rps = new RockPaperScissors();
+		final String fileName = "inputs/day2/d2_1_input.txt";
+
+		final List<String> list = fu.loadFileToList(fileName);
+
+		final Long outcomesSum = rps.computeAnotherRoundsOutcomesSum(list);
+		System.out.println("outcomesSum = " + outcomesSum);
+
+		Assertions.assertThat(outcomesSum).isEqualTo(11756);
+	}
 }

@@ -5,7 +5,7 @@
 
 --- Day 2: Rock Paper Scissors ---
 * part 1 `12645`
-* part 2 ``
+* part 2 `11756`
 
 
 

@@ -34,12 +34,76 @@ public class RockPaperScissors {
 			return RoundOutcome.DRAW;
 		} else if (shapePair.getLeft().equals(Shape.ROCK) && shapePair.getRight().equals(Shape.PAPER)) {
 			return RoundOutcome.WON;
-		}else if (shapePair.getLeft().equals(Shape.PAPER) && shapePair.getRight().equals(Shape.SCISSORS)) {
+		} else if (shapePair.getLeft().equals(Shape.PAPER) && shapePair.getRight().equals(Shape.SCISSORS)) {
 			return RoundOutcome.WON;
-		}else if (shapePair.getLeft().equals(Shape.SCISSORS) && shapePair.getRight().equals(Shape.ROCK)) {
+		} else if (shapePair.getLeft().equals(Shape.SCISSORS) && shapePair.getRight().equals(Shape.ROCK)) {
 			return RoundOutcome.WON;
 		}
 		return RoundOutcome.LOST;
+	}
+
+	public Long computeAnotherRoundsOutcomesSum(List<String> list) {
+
+		Long sum = 0L;
+		for (String round : list) {
+			final String[] e = round.split(" ");
+			Long result = computeSingleRoundResultV2(e);
+			sum += result;
+		}
+
+		return sum;
+	}
+
+	private Long computeSingleRoundResultV2(String[] e) {
+
+		Long result = 0L;
+
+		final Pair<Shape, RoundOutcome> pair = decodeShapesAndROundOutcome(e);
+		Shape resultShape = computeShapeFromOutcome(pair);
+		result += resultShape.value;
+		result += pair.getRight().value;
+		return result;
+	}
+
+	private Pair<Shape, RoundOutcome> decodeShapesAndROundOutcome(String[] e) {
+
+		return Pair.of(decode(e[0]), decodeOutcome(e[1]));
+	}
+
+	private Shape computeShapeFromOutcome(Pair<Shape, RoundOutcome> pair) {
+
+		if (pair.getRight().equals(RoundOutcome.DRAW)) {
+			return pair.getLeft();
+		} else if (pair.getRight().equals(RoundOutcome.WON)) {
+			return findWinnerFor(pair.getLeft());
+		}
+		return findLoserFor(pair.getLeft());
+	}
+
+	private Shape findLoserFor(Shape shape) {
+
+		switch (shape) {
+		case ROCK:
+			return Shape.SCISSORS;
+		case PAPER:
+			return Shape.ROCK;
+		case SCISSORS:
+			return Shape.PAPER;
+		}
+		return null;
+	}
+
+	private Shape findWinnerFor(Shape shape) {
+
+		switch (shape) {
+		case ROCK:
+			return Shape.PAPER;
+		case PAPER:
+			return Shape.SCISSORS;
+		case SCISSORS:
+			return Shape.ROCK;
+		}
+		return null;
 	}
 
 	private Pair<Shape, Shape> decodeShapes(String[] e) {
@@ -59,6 +123,19 @@ public class RockPaperScissors {
 		case "C":
 		case "Z":
 			return Shape.SCISSORS;
+		}
+		return null;
+	}
+
+	private RoundOutcome decodeOutcome(String code) {
+
+		switch (code) {
+		case "X":
+			return RoundOutcome.LOST;
+		case "Y":
+			return RoundOutcome.DRAW;
+		case "Z":
+			return RoundOutcome.WON;
 		}
 		return null;
 	}
