@@ -1,0 +1,29 @@
+package pl.larks.aoc22.day2;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import pl.larks.aoc22.utils.FileUtils;
+
+class RockPaperScissorsTest {
+
+	FileUtils fu = new FileUtils();
+	@Test
+	void Part1ComputeRoundsOutcomesSumWhenExampleFile() {
+
+		RockPaperScissors rps = new RockPaperScissors();
+		final String fileName = "inputs/day2/d2_1_example.txt";
+		fu.printInputStream(fileName);
+
+		final List<String> list = fu.loadFileToList(fileName);
+
+		final Long outcomesSum = rps.computeRoundsOutcomesSum(list);
+		System.out.println("outcomesSum = " + outcomesSum);
+
+		Assertions.assertThat(outcomesSum).isEqualTo(15);
+	}
+}
