@@ -57,4 +57,9 @@ public class FileUtils {
 		final InputStream fileFromResourceAsStream = getFileFromResourceAsStream(fileName);
 		return loadInputStreamToList(fileFromResourceAsStream);
 	}
+
+	public void printInputStream(String fileName) {
+		final InputStream fileFromResourceAsStream = getFileFromResourceAsStream(fileName);
+		printInputStream(fileFromResourceAsStream);
+	}
 }
