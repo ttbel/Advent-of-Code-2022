@@ -11,6 +11,10 @@
 * part 1 `7863`
 * part 2 `2488`
 
+--- Day 4: Camp Cleanup ---
+* part 1 `534`
+* part 2 ``
+
 
 
 
