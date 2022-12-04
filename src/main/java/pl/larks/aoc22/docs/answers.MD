@@ -8,8 +8,8 @@
 * part 2 `11756`
 
 --- Day 3: Rucksack Reorganization ---
-* part 2 ``
 * part 1 `7863`
+* part 2 `2488`
 
 
 
