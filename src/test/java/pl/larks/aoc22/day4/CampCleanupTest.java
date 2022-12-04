@@ -14,25 +14,25 @@ class CampCleanupTest {
 	private final CampCleanup cc = new CampCleanup();
 
 	@Test
-	void p1GetOverlappingSectionsCountWhenExample() {
+	void p1GetFullyContainSectionsCountWhenExample() {
 
 		final String fileName = "inputs/day4/d4_1_example.txt";
 		List<String> list = fu.loadFileToList(fileName);
 		fu.printInputStream(fileName);
 
-		Long actual = cc.p1GetOverlappingSectionsCount(list);
+		Long actual = cc.p1GetFullyContainSectionsCount(list);
 
 		assertThat(actual).isEqualTo(2);
 	}
 
 	@Test
-	void p1GetOverlappingSectionsCountWhenInput() {
+	void p1GetFullyContainSectionsCountWhenInput() {
 
 		final String fileName = "inputs/day4/d4_1_input.txt";
 		List<String> list = fu.loadFileToList(fileName);
 		fu.printInputStream(fileName);
 
-		Long actual = cc.p1GetOverlappingSectionsCount(list);
+		Long actual = cc.p1GetFullyContainSectionsCount(list);
 
 		assertThat(actual).isEqualTo(534);
 	}

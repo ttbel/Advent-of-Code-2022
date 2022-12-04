@@ -6,20 +6,20 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class CampCleanup {
 
-	public Long p1GetOverlappingSectionsCount(List<String> list) {
+	public Long p1GetFullyContainSectionsCount(List<String> list) {
 
-		Long overlappingSectionsCount = 0L;
-		overlappingSectionsCount = list.stream().map(l -> {
+		Long fullyContainSectionsCount = 0L;
+		fullyContainSectionsCount = list.stream().map(l -> {
 					final String[] split = l.split(",");
 					Pair pair = Pair.of(split[0], split[1]);
 					return pair;
 				})
 				.map(pair -> Pair.of(new Section(pair.getLeft().toString()), new Section(pair.getRight().toString())))
-				.filter(p -> p.getLeft().isOverlaping(p.getRight()) || p.getRight().isOverlaping(p.getLeft()))
+				.filter(p -> p.getLeft().isFullyContaining(p.getRight()) || p.getRight().isFullyContaining(p.getLeft()))
 				.count();
 
-		System.out.println("overlappingSectionsCount = " + overlappingSectionsCount);
-		return overlappingSectionsCount;
+		System.out.println("FullyContainSectionsCount = " + fullyContainSectionsCount);
+		return fullyContainSectionsCount;
 	}
 
 	class Section {
@@ -34,7 +34,7 @@ public class CampCleanup {
 			this.to = Integer.parseInt(split[1]);
 		}
 
-		public boolean isOverlaping(Section other) {
+		public boolean isFullyContaining(Section other) {
 
 			return this.from <= other.from && other.to <= this.to;
 		}
