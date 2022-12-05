@@ -13,7 +13,7 @@
 
 --- Day 4: Camp Cleanup ---
 * part 1 `534`
-* part 2 ``
+* part 2 `841`
 
 
 

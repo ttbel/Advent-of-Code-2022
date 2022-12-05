@@ -1,5 +1,7 @@
 package pl.larks.aoc22.day4;
 
+import static java.lang.Integer.parseInt;
+
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,6 +24,25 @@ public class CampCleanup {
 		return fullyContainSectionsCount;
 	}
 
+	public Long p1OverlappingSectionsCount(List<String> list) {
+
+		Long overlappingSectionsCount = 0L;
+		overlappingSectionsCount = list.stream().map(l -> {
+					final String[] split = l.split(",");
+					Pair pair = Pair.of(split[0], split[1]);
+					return pair;
+				})
+				.map(pair -> Pair.of(new Section(pair.getLeft().toString()), new Section(pair.getRight().toString())))
+				.peek(p -> System.out.println("p = " + p))
+				.peek(p -> System.out.println(
+						"r = " + (p.getLeft().isOverlapping(p.getRight()) || p.getRight().isOverlapping(p.getLeft()))))
+				.filter(p -> p.getLeft().isOverlapping(p.getRight()) || p.getRight().isOverlapping(p.getLeft()))
+				.count();
+
+		System.out.println("OverlappingSectionsCount = " + overlappingSectionsCount);
+		return overlappingSectionsCount;
+	}
+
 	class Section {
 
 		int from;
@@ -30,13 +51,23 @@ public class CampCleanup {
 		public Section(String range) {
 
 			final String[] split = range.split("-");
-			this.from = Integer.parseInt(split[0]);
-			this.to = Integer.parseInt(split[1]);
+			this.from = parseInt(split[0]);
+			this.to = parseInt(split[1]);
 		}
 
 		public boolean isFullyContaining(Section other) {
 
 			return this.from <= other.from && other.to <= this.to;
+		}
+
+		public boolean isOverlapping(Section other) {
+
+			return this.from <= other.from && this.to >= other.from;
+		}
+
+		@Override public String toString() {
+
+			return "Section{ " + from + "-" + to + " }";
 		}
 	}
 }
