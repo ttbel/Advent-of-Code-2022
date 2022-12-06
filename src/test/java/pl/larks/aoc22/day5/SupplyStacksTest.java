@@ -1,8 +1,10 @@
 package pl.larks.aoc22.day5;
 
 import java.util.List;
-import java.util.Queue;
+import java.util.Stack;
 
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.junit.jupiter.api.Test;
 
 import pl.larks.aoc22.utils.FileUtils;
@@ -18,6 +20,7 @@ class SupplyStacksTest {
 		List<String> list = fu.loadFileToList(fileName);
 		fu.printInputStream(fileName);
 
-		Queue q
+		SupplyStacks supplyStacks = new SupplyStacks();
+		Pair<List<Stack<Character>>, List<Triple<Integer, Integer, Integer>>> inputData = supplyStacks.readInput(list);
 	}
 }
