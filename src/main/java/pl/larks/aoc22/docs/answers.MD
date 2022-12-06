@@ -26,7 +26,7 @@
 
 * --- Day 6: Tuning Trouble ---
   * part 1 `1142`
-  * part 2 ``
+  * part 2 `2803`
 
 
 

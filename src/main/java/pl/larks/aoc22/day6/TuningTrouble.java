@@ -23,4 +23,31 @@ public class TuningTrouble {
 
 		return false;
 	}
+
+	public int part2GetEndOfMessageMarker(String ds) {
+
+		int marker = 0;
+		int i = 0;
+		while (!all19CharsAreDifferent(ds, i) && i < ds.length() - 18) {
+			i++;
+		}
+		marker = i + 14;
+		System.out.println("marker = " + marker + " ds=" + ds);
+		return marker;
+	}
+
+	private boolean all19CharsAreDifferent(String ds, int i) {
+
+		System.out.println("ds = " + ds);
+		for (int k = 0; k < 14; k++) {
+
+			for (int j = 1; j + k < 14; j++) {
+				System.out.println(ds.charAt(k) + " - " + ds.charAt(k + j) + "  " + k + " " + j);
+				if (ds.charAt(i + k) == ds.charAt(i + k + j)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
