@@ -72,4 +72,27 @@ public class SupplyStacks {
 			}
 		}
 	}
+
+	public void executeMovements(Pair<List<Stack<Character>>, List<Triple<Integer, Integer, Integer>>> inputData) {
+
+		final List<Stack<Character>> stacks = inputData.getLeft();
+		for (Triple<Integer, Integer, Integer> move : inputData.getRight()) {
+			for (int i = 0; i < move.getLeft(); i++) {
+				Character crate = stacks.get(move.getMiddle() - 1).pop();
+				stacks.get(move.getRight() - 1).push(crate);
+			}
+		}
+	}
+
+	public String getTopCrates(List<Stack<Character>> left) {
+
+		String topCrates = "";
+		for (int i = 0; i < left.size(); i++) {
+			if (!left.get(i).isEmpty()) {
+
+				topCrates += left.get(i).pop();
+			}
+		}
+		return topCrates.trim();
+	}
 }
