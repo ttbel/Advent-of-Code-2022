@@ -47,4 +47,38 @@ class SupplyStacksTest {
 		System.out.println("topCrates = " + topCrates);
 		Assertions.assertThat(topCrates.toString()).isEqualTo("CFFHVVHNC");
 	}
+
+	@Test
+	void part2WhenExample() {
+
+		final String fileName = "inputs/day5/d5_1_example.txt";
+		List<String> list = fu.loadFileToList(fileName);
+		fu.printInputStream(fileName);
+
+		SupplyStacks supplyStacks = new SupplyStacks();
+		Pair<List<Stack<Character>>, List<Triple<Integer, Integer, Integer>>> inputData = supplyStacks.readInput(list);
+		System.out.println("inputData = " + inputData);
+
+		supplyStacks.executeMovementsAllCratesAtOnce(inputData);
+		String topCrates = supplyStacks.getTopCrates(inputData.getLeft());
+		System.out.println("topCrates = " + topCrates);
+		Assertions.assertThat(topCrates.toString()).isEqualTo("MCD");
+	}
+
+	@Test
+	void part2WhenInput() {
+
+		final String fileName = "inputs/day5/d5_1_input.txt";
+		List<String> list = fu.loadFileToList(fileName);
+		fu.printInputStream(fileName);
+
+		SupplyStacks supplyStacks = new SupplyStacks();
+		Pair<List<Stack<Character>>, List<Triple<Integer, Integer, Integer>>> inputData = supplyStacks.readInput(list);
+		System.out.println("inputData = " + inputData);
+
+		supplyStacks.executeMovementsAllCratesAtOnce(inputData);
+		String topCrates = supplyStacks.getTopCrates(inputData.getLeft());
+		System.out.println("topCrates = " + topCrates);
+		Assertions.assertThat(topCrates.toString()).isEqualTo("FSZWBPTBG");
+	}
 }

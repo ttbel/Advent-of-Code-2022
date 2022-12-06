@@ -84,6 +84,24 @@ public class SupplyStacks {
 		}
 	}
 
+	public void executeMovementsAllCratesAtOnce(
+			Pair<List<Stack<Character>>, List<Triple<Integer, Integer, Integer>>> inputData) {
+
+		final List<Stack<Character>> stacks = inputData.getLeft();
+		for (Triple<Integer, Integer, Integer> move : inputData.getRight()) {
+			Stack<Character> temp = new Stack();
+			for (int i = 0; i < move.getLeft(); i++) {
+				Character crate = stacks.get(move.getMiddle() - 1).pop();
+				temp.push(crate);
+			}
+			System.out.println("stacks before = " + stacks);
+			for (int i = 0; !temp.empty(); i++) {
+				stacks.get(move.getRight() - 1).push(temp.pop());
+			}
+			System.out.println("stacks after= " + stacks);
+		}
+	}
+
 	public String getTopCrates(List<Stack<Character>> left) {
 
 		String topCrates = "";
